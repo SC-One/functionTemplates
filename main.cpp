@@ -1,30 +1,21 @@
 #include<iostream>
-#include<string_view>
-
-template <char A='A',char Z='Z',typename Arg> bool isInAZ(Arg& thing);       // Note: changed place of typename Arg
-
+template <size_t N,typename T>  T averageArr(const T (&arr)[N]);          // pass fixed size array (N elements of arr)
 int main()
 {
-    char h{'h'};
-    std::cout<<isInAZ(h)<<std::endl;
-    h++;
-    std::cout<<isInAZ(h)<<std::endl;
-    char H='H';
-    std::cout<<isInAZ(H)<<std::endl;
-
-    char j{'j'};
-    std::cout<<isInAZ<'a','c'>(j)<<std::endl;             // now compiler is capable to compile it.
-    char b{'b'};
-    std::cout<<isInAZ<'a','c'>(b)<<std::endl;
-
-    // it's better always do this job. to be able use that function better in Main()
+    double doubles[2] { 1.0, 2.0 };
+    std::cout<<averageArr(doubles)<<std::endl;
+    double moreDoubles[] { 1.0, 2.0, 3.0, 4.0 };
+    std::cout<<averageArr(moreDoubles)<<std::endl;
+    std::cout << averageArr( { 1.0, 2.0, 3.0, 4.0 } ) << std::endl;
+    int ints[] = { 1, 2, 3, 4 };
+    std::cout << averageArr(ints) << std::endl;
     return 0;
 }
 
-template <char A,char Z,typename Arg> bool isInAZ(Arg& thing)       // Note: changed place of typename Arg
+template <size_t N,typename T>  T averageArr(const T (&arr)[N])
 {
-    if(thing>=A && thing<=Z)
-        return true;
-    else
-        return false;
+    T sum{};
+    for(size_t i{};i<N;++i)
+        sum+=arr[i];
+    return sum/N;
 }
