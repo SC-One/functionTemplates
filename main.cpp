@@ -1,8 +1,7 @@
 #include<iostream>
 #include<string_view>
 #include<string>
-
-template <typename TReturn=double, typename TArg1, typename TArg2>TReturn largerThing(const TArg1& a, const TArg2& b)
+template <typename TArg, typename TReturn=TArg>TReturn largerThing(const TArg& a, const TArg& b)
 {
     return a>b?a:b;
 }
