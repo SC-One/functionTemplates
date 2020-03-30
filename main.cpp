@@ -1,13 +1,11 @@
 #include<iostream>
-template <typename TReturn, typename TArg1, typename TArg2> TReturn larger(TArg1 a, TArg2 b)
-{
-    return a > b ? a : b;
-}
 
+template<typename T1,typename T2> auto largerNumber(T1 a, T2 b)->decltype (a>b?a:b)
+{
+    return a>b?a:b;
+}
 int main()
 {
-    std::cout<<larger<double>(1.5,2.7)<<std::endl;
-    std::cout<<larger<double,size_t>(2.5,2.7)<<std::endl;
-    std::cout<<larger<double,size_t,size_t>(1.5,2.7)<<std::endl;
+    std::cout<<largerNumber(1.2,2.4)<<std::endl;
     return 0;
 }
