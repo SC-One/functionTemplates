@@ -1,9 +1,12 @@
 #include<iostream>
 #include<string_view>
 #include<vector>
-#include<string> // for comparing between string by (><!+= etc)
+#include<string>
+///////////////////////////////////////////////////////// prototype
 template<typename T> T largerCtr(T data[],size_t count);
-template<typename T> T largerCtr(std::vector<T> data);
+template<typename T> T largerCtr(std::vector<T>& data);     // refrence pass , avoid from copying vector (expensive job)!
+/////////////////////////////////////////////////////////
+
 int main()
 {
     std::vector<double> doubleCtr{12,42,43,24,10,100,103,74,78};
@@ -27,7 +30,7 @@ template<typename T> T largerCtr(T data[],size_t count)
             maxIndex=i;
     return data[maxIndex];
 }
-template<typename T> T largerCtr(std::vector<T> data)
+template<typename T> T largerCtr(std::vector<T>& data)
 {
     T max{data.at(0)};
     for(auto &arr:data)
